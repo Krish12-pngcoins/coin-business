@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Heritage Numismatics | Rare Coins, Bullion & Ancient Currency</title>
+  <meta name="description" content="Trusted dealer in rare US coins, silver bullion, and ancient currency. PCGS & NGC member. Free appraisals. Est. 2004."/>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="[fonts.googleapis.com](https://fonts.googleapis.com)"/>
+  <link href="[fonts.googleapis.com](https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap)" rel="stylesheet"/>
+
+  <style>
+    /* ── DESIGN TOKENS ───────────────────────────────────── */
+    :root {
+      --navy:       #0d1b2a;
+      --navy-mid:   #1a2f45;
+      --charcoal:   #2e3a47;
+      --gold:       #c9a84c;
+      --gold-light: #e2c97e;
+      --gold-pale:  #f5edd5;
+      --white:      #ffffff;
+      --off-white:  #f8f6f1;
+      --text-body:  #3d4a56;
+      --text-muted: #6b7a8d;
+      --border:     #ddd5c0;
+
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans:  'Inter', system-ui, sans-serif;
+
+      --radius-sm:  6px;
+      --radius-md:  12px;
+      --radius-lg:  20px;
+      --shadow-card: 0 4px 24px rgba(13,27,42,0.10);
+      --shadow-hover: 0 8px 40px rgba(13,27,42,0.18);
+      --transition: 0.28s ease;
+    }
+
+    /* ── RESET & BASE ────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-sans);
+      color: var(--text-body);
+      background: var(--off-white);
+      line-height: 1.7;
+    }
+    img { max-width: 100%; display: block; }
+    a  { color: inherit; text-decoration: none; }
+
+    /* ── UTILITY ─────────────────────────────────────────── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .section    { padding: 88px 0; }
+    .section-sm { padding: 56px 0; }
+
+    .tag {
+      display: inline-block;
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    h1, h2, h3, h4 { font-family: var(--font-serif); line-height: 1.25; }
+    h1 { font-size: clamp(2.4rem, 5vw, 3.8rem); color: var(--white); }
+    h2 { font-size: clamp(1.9rem, 3.5vw, 2.8rem); color: var(--navy); }
+    h3 { font-size: 1.35rem; color: var(--navy); }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 32px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-sans);
+      font-size: 0.9rem; font-weight: 600;
+      letter-spacing: 0.04em;
+      cursor: pointer; border: none;
+      transition: var(--transition);
+    }
+    .btn-gold {
+      background: var(--gold); color: var(--navy);
+    }
+    .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--gold);
+      color: var(--gold);
+    }
+    .btn-outline:hover { background: var(--gold); color: var(--navy); }
+
+    /* ── NAVIGATION ──────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(13,27,42,0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 72px; padding: 0 32px;
+    }
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 1.4rem; font-weight: 700;
+      color: var(--white);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; align-items: center; gap: 36px; }
+    .nav-links a {
+      font-size: 0.875rem; font-weight: 500;
+      color: rgba(255,255,255,0.8);
+      letter-spacing: 0.03em;
+      transition: color var(--transition);
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+    .nav-cta {
+      background: var(--gold); color: var(--navy);
+      padding: 10px 22px; border-radius: var(--radius-sm);
+      font-weight: 600; font-size: 0.85rem;
+      transition: var(--transition);
+    }
+    .nav-cta:hover { background: var(--gold-light); color: var(--navy); }
+
+    /* Mobile menu toggle */
+    .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .nav-toggle span { width: 24px; height: 2px; background: var(--white); }
+
+    /* ── HERO ─────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      background:
+        linear-gradient(135deg, rgba(13,27,42,0.92) 0%, rgba(26,47,69,0.85) 100%),
+        url('assets/hero-coin.jpg') center/cover no-repeat;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 120px 24px 80px;
+    }
+    .hero-content { max-width: 820px; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(201,168,76,0.15);
+      border: 1px solid rgba(201,168,76,0.4);
+      border-radius: 40px; padding: 8px 20px;
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--gold-light);
+      margin-bottom: 28px;
+    }
+    .hero h1 { margin-bottom: 24px; }
+    .hero h1 em { color: var(--gold); font-style: normal; }
+    .hero-sub {
+      font-size: 1.15rem; color: rgba(255,255,255,0.72);
+      max-width: 580px; margin: 0 auto 40px;
+    }
+    .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    /* Spot price ticker */
+    .spot-ticker {
+      margin-top: 56px;
+      display: inline-flex; gap: 40px; align-items: center;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: var(--radius-sm);
+      padding: 14px 32px;
+    }
+    .ticker-item { text-align: center; }
+    .ticker-label { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+    .ticker-price { font-family: var(--font-serif); font-size: 1.25rem; color: var(--gold-light); }
+    .ticker-change { font-size: 0.75rem; color: #5ecb8c; }
+
+    /* ── TRUST BAR ───────────────────────────────────────── */
+    .trust-bar {
+      background: var(--navy);
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+    }
+    .trust-bar-inner {
+      display: flex; justify-content: center; align-items: center;
+      flex-wrap: wrap; gap: 40px;
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 10px;
+      color: rgba(255,255,255,0.7); font-size: 0.85rem; font-weight: 500;
+    }
+    .trust-icon { color: var(--gold); font-size: 1.1rem; }
+
+    /* ── FEATURED ARRIVALS ───────────────────────────────── */
+    .featured { background: var(--off-white); }
+    .section-header { text-align: center; margin-bottom: 56px; }
+    .section-header p { color: var(--text-muted); max-width: 520px; margin: 12px auto 0; }
+
+    .coin-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 28px;
+    }
+    .coin-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      transition: var(--transition);
+      border: 1px solid var(--border);
+    }
+    .coin-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+
+    .coin-img-wrap {
+      position: relative; background: var(--navy);
+      height: 220px; overflow: hidden;
+    }
+    .coin-img-wrap img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .coin-card:hover .coin-img-wrap img { transform: scale(1.06); }
+
+    .coin-badge {
+      position: absolute; top: 14px; left: 14px;
+      background: var(--gold); color: var(--navy);
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 4px;
+    }
+    .coin-grade {
+      position: absolute; top: 14px; right: 14px;
+      background: rgba(13,27,42,0.85);
+      color: var(--gold-light);
+      font-size: 0.75rem; font-weight: 600;
+      padding: 4px 10px; border-radius: 4px;
+    }
+    .coin-body { padding: 20px 22px 22px; }
+    .coin-era { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); }
+    .coin-name { font-family: var(--font-serif); font-size: 1.1rem; color: var(--navy); margin: 6px 0 4px; }
+    .coin-meta { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 16px; }
+    .coin-footer { display: flex; align-items: center; justify-content: space-between; }
+    .coin-price { font-family: var(--font-serif); font-size: 1.3rem; color: var(--navy); font-weight: 700; }
+    .coin-cta {
+      font-size: 0.8rem; font-weight: 600; color: var(--gold);
+      border: 1px solid var(--gold); border-radius: 4px;
+      padding: 6px 14px; transition: var(--transition);
+    }
+    .coin-cta:hover { background: var(--gold); color: var(--navy); }
+
+    /* ── 2026 COLLECTION BANNER ──────────────────────────── */
+    .anniversary-banner {
+      background: linear-gradient(135deg, var(--navy) 0%, #1a3a5c 50%, var(--navy-mid) 100%);
+      border-top: 3px solid var(--gold);
+      border-bottom: 3px solid var(--gold);
+      padding: 72px 0; text-align: center; color: var(--white);
+    }
+    .anniversary-banner h2 { color: var(--white); margin-bottom: 16px; }
+    .anniversary-banner h2 em { color: var(--gold); font-style: normal; }
+    .anniversary-banner p { color: rgba(255,255,255,0.7); max-width: 580px; margin: 0 auto 32px; }
+
+    /* ── WHY CHOOSE US ───────────────────────────────────── */
+    .why { background: var(--white); }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 32px; margin-top: 56px;
+    }
+    .why-card {
+      padding: 36px 30px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      transition: var(--transition);
+    }
+    .why-card:hover { border-color: var(--gold); box-shadow: var(--shadow-card); }
+    .why-icon {
+      width: 52px; height: 52px;
+      background: var(--gold-pale);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; margin-bottom: 20px;
+    }
+    .why-card h3 { font-size: 1.15rem; margin-bottom: 10px; }
+    .why-card p { font-size: 0.9rem; color: var(--text-muted); }
+
+    /* ── AUTHENTICATION PROCESS ──────────────────────────── */
+    .auth-section { background: var(--off-white); }
+    .auth-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px; margin-top: 56px;
+    }
+    .auth-step {
+      text-align: center; padding: 32px 24px;
+      background: var(--white);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      position: relative;
+    }
+    .step-num {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--gold); color: var(--navy);
+      font-family: var(--font-serif); font-size: 1.1rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+    }
+    .auth-step h3 { font-size: 1rem; margin-bottom: 10px; }
+    .auth-step p { font-size: 0.85rem; color: var(--text-muted); }
+
+    /* ── TESTIMONIALS ────────────────────────────────────── */
+    .testimonials { background: var(--navy); }
+    .testimonials .section-header h2 { color: var(--white); }
+    .testimonials .section-header p  { color: rgba(255,255,255,0.6); }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px; margin-top: 48px;
+    }
+    .testimonial-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: var(--radius-md);
+      padding: 32px;
+    }
+    .stars { color: var(--gold); font-size: 1rem; margin-bottom: 16px; letter-spacing: 2px; }
+    .testimonial-card blockquote {
+      font-size: 0.93rem;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.75; margin-bottom: 20px;
+    }
+    .testimonial-author { font-weight: 600; color: var(--gold-light); font-size: 0.85rem; }
+    .testimonial-role { color: rgba(255,255,255,0.45); font-size: 0.78rem; }
+
+    /* ── SELL / APPRAISAL CTA ────────────────────────────── */
+    .appraisal-cta {
+      background: linear-gradient(to right, var(--gold-pale), var(--off-white));
+      border-top: 1px solid var(--border);
+      padding: 80px 0; text-align: center;
+    }
+    .appraisal-cta h2 { margin-bottom: 14px; }
+    .appraisal-cta p { color: var(--text-muted); max-width: 500px; margin: 0 auto 32px; }
+
+    /* ── FOOTER ──────────────────────────────────────────── */
+    footer {
+      background: var(--navy);
+      border-top: 1px solid rgba(201,168,76,0.2);
+      padding: 64px 0 28px;
+      color: rgba(255,255,255,0.6);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 48px; margin-bottom: 48px;
+    }
+    .footer-brand p { font-size: 0.88rem; margin-top: 14px; line-height: 1.7; }
+    .footer-col h4 {
+      font-family: var(--font-serif);
+      color: var(--white); font-size: 0.95rem;
+      margin-bottom: 18px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a { font-size: 0.85rem; transition: color var(--transition); }
+    .footer-col ul li a:hover { color: var(--gold); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 24px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.78rem; flex-wrap: wrap; gap: 12px;
+    }
+    .security-badges { display: flex; gap: 12px; align-items: center; }
+    .security-badge {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 4px;
+      padding: 5px 12px; font-size: 0.72rem;
+      color: rgba(255,255,255,0.6);
+      font-weight: 600; letter-spacing: 0.05em;
+    }
+
+    /* ── SHOP FILTERS ────────────────────────────────────── */
+    .filter-bar {
+      display: flex; gap: 12px; flex-wrap: wrap;
+      margin-bottom: 40px; padding: 20px 24px;
+      background: var(--white); border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+    }
+    .filter-group { display: flex; flex-direction: column; gap: 6px; }
+    .filter-group label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
+    .filter-group select {
+      padding: 8px 14px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      font-family: var(--font-sans); font-size: 0.85rem;
+      color: var(--text-body); background: var(--off-white);
+      cursor: pointer;
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .nav-links  { display: none; }
+      .nav-toggle { display: flex; }
+    }
+    @media (max-width: 600px) {
+      .section { padding: 56px 0; }
+      .hero { padding: 100px 20px 60px; }
+      .spot-ticker { gap: 20px; padding: 12px 20px; flex-wrap: wrap; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .hero-actions { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ─────────────────────────────────────── -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">⬡ Heritage <span>Numismatics</span></div>
+    <div class="nav-links">
+      <a href="#shop">Shop</a>
+      <a href="#sell">Sell & Appraise</a>
+      <a href="#authentication">Authentication</a>
+      <a href="#education">Learn</a>
+      <a href="#contact">Contact</a>
+      <a href="#shop" class="nav-cta">View Inventory</a>
+    </div>
+    <div class="nav-toggle" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ───────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">⬡ PCGS &amp; NGC Authorized Dealer · Est. 2004</div>
+    <h1>
+      Where <em>Rare Coins</em><br/>Become Lasting Investments
+    </h1>
+    <p class="hero-sub">
+      Twenty years of expertise in US rarities, silver bullion, and ancient currency. Every coin authenticated, graded, and guaranteed.
+    </p>
+    <div class="hero-actions">
+      <a href="#shop" class="btn btn-gold">Browse Inventory</a>
+      <a href="#sell" class="btn btn-outline">Free Appraisal →</a>
+    </div>
+
+    <!-- Live Spot Prices -->
+    <div class="spot-ticker">
+      <div class="ticker-item">
+        <div class="ticker-label">Gold Spot</div>
+        <div class="ticker-price" id="gold-price">$3,321.40</div>
+        <div class="ticker-change" id="gold-change">▲ +0.42%</div>
+      </div>
+      <div style="width:1px;height:36px;background:rgba(255,255,255,0.15)"></div>
+      <div class="ticker-item">
+        <div class="ticker-label">Silver Spot</div>
+        <div class="ticker-price" id="silver-price">$36.22</div>
+        <div class="ticker-change" id="silver-change">▲ +0.89%</div>
+      </div>
+      <div style="width:1px;height:36px;background:rgba(255,255,255,0.15)"></div>
+      <div class="ticker-item">
+        <div class="ticker-label">Gold/Silver Ratio</div>
+        <div class="ticker-price">91.7</div>
+        <div class="ticker-change">Historically elevated</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TRUST BAR ─────────────────────────────────────── -->
+<div class="trust-bar">
+  <div class="container">
+    <div class="trust-bar-inner">
+      <div class="trust-item"><span class="trust-icon">✦</span> PCGS Authorized Dealer</div>
+      <div class="trust-item"><span class="trust-icon">✦</span> NGC Member</div>
+      <div class="trust-item"><span class="trust-icon">✦</span> ANA Life Member</div>
+      <div class="trust-item"><span class="trust-icon">✦</span> 100% Authenticity Guarantee</div>
+      <div class="trust-item"><span class="trust-icon">✦</span> Free Insured Shipping Over $500</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FEATURED ARRIVALS ─────────────────────────────── -->
+<section class="section featured" id="shop">
+  <div class="container">
+    <div class="section-header">
+      <span class="tag">New Inventory</span>
+      <h2>Featured Arrivals</h2>
+      <p>Recently authenticated pieces across all categories. Updated weekly.</p>
+    </div>
+
+    <!-- Shop Filters -->
+    <div class="filter-bar">
+      <div class="filter-group">
+        <label>Era</label>
+        <select>
+          <option>All Eras</option>
+          <option>Ancient (Pre-500 AD)</option>
+          <option>Colonial (1600–1792)</option>
+          <option>Early American (1793–1836)</option>
+          <option>Classic (1837–1892)</option>
+          <option>Modern (1893–Present)</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>Metal</label>
+        <select>
+          <option>All Metals</option>
+          <option>Gold</option>
+          <option>Silver</option>
+          <option>Copper</option>
+          <option>Platinum</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>Grade (Sheldon Scale)</label>
+        <select>
+          <option>All Grades</option>
+          <option>MS-70 (Perfect)</option>
+          <option>MS-67 to MS-69</option>
+          <option>MS-63 to MS-66</option>
+          <option>MS-60 to MS-62</option>
+          <option>AU (About Uncirculated)</option>
+          <option>VF / F / G (Circulated)</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>Price Range</label>
+        <select>
+          <option>Any Price</option>
+          <option>Under $250</option>
+          <option>$250 – $1,000</option>
+          <option>$1,000 – $5,000</option>
+          <option>$5,000+</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="coin-grid">
+      <!-- Card 1 -->
+      <div class="coin-card">
+        <div class="coin-img-wrap">
+          <img src="assets/coin-1877-indian-cent.jpg" alt="1877 Indian Head Cent MS-64"/>
+          <span class="coin-badge">Key Date</span>
+          <span class="coin-grade">PCGS MS-64</span>
+        </div>
+        <div class="coin-body">
+          <div class="coin-era">US Copper · 1877</div>
+          <h3 class="coin-name">Indian Head Cent</h3>
+          <p class="coin-meta">Lowest mintage of the series (852,500). Choice brown, original surfaces. PCGS #2097.</p>
+          <div class="coin-footer">
+            <span class="coin-price">$4,850</span>
+            <a href="#" class="coin-cta">View Details</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="coin-card">
+        <div class="coin-img-wrap">
+          <img src="assets/coin-1881s-morgan.jpg" alt="1881-S Morgan Silver Dollar MS-67"/>
+          <span class="coin-badge">Premium</span>
+          <span class="coin-grade">NGC MS-67</span>
+        </div>
+        <div class="coin-body">
+          <div class="coin-era">US Silver · 1881</div>
+          <h3 class="coin-name">Morgan Silver Dollar, 1881-S</h3>
+          <p class="coin-meta">Blazing white luster, fully struck. One of the finest Morgan dates. NGC #5124.</p>
+          <div class="coin-footer">
+            <span class="coin-price">$2,200</span>
+            <a href="#" class="coin-cta">View Details</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="coin-card">
+        <div class="coin-img-wrap">
+          <img src="assets/coin-roman-denarius.jpg" alt="Roman Silver Denarius, Julius Caesar 44 BC"/>
+          <span class="coin-badge">Ancient</span>
+          <span class="coin-grade">Fine+</span>
+        </div>
+        <div class="coin-body">
+          <div class="coin-era">Roman · 44 BC</div>
+          <h3 class="coin-name">Julius Caesar Denarius</h3>
+          <p class="coin-meta">Lifetime portrait issue. L. Aemilius Buca, moneyer. Clear portrait and reverse. Ex private European collection.</p>
+          <div class="coin-footer">
+            <span class="coin-price">$6,400</span>
+            <a href="#" class="coin-cta">View Details</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="coin-card">
+        <div class="coin-img-wrap">
+          <img src="assets/coin-1oz-gold-eagle.jpg" alt="2024 American Gold Eagle 1oz MS-70"/>
+          <span class="coin-badge">Bullion</span>
+          <span class="coin-grade">NGC MS-70</span>
+        </div>
+        <div class="coin-body">
+          <div class="coin-era">US Gold Bullion · 2024</div>
+          <h3 class="coin-name">American Gold Eagle, 1 oz</h3>
+          <p class="coin-meta">First Strikes. Perfect 70, Population 1,847. Ideal for IRA-eligible gold holding.</p>
+          <div class="coin-footer">
+            <span class="coin-price">$3,490</span>
+            <a href="#" class="coin-cta">View Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:48px">
+      <a href="shop.html" class="btn btn-gold">View Full Inventory</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── 2026 SEMIQUINCENTENNIAL BANNER ─────────────────── -->
+<section class="anniversary-banner">
+  <div class="container">
+    <span class="tag">Now Available</span>
+    <h2>The <em>2026 Semiquincentennial</em> Collection</h2>
+    <p>
+      America's 250th anniversary is generating the strongest numismatic demand in a generation. We've curated the definitive collector set — from early American Founding-era coins to the new US Mint commemoratives.
+    </p>
+    <a href="shop-2026.html" class="btn btn-gold">Explore the 250th Anniversary Collection →</a>
+  </div>
+</section>
+
+<!-- ── WHY CHOOSE US ──────────────────────────────────── -->
+<section class="section why">
+  <div class="container">
+    <div class="section-header">
+      <span class="tag">Our Difference</span>
+      <h2>Why Collectors Trust Heritage</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">🏆</div>
+        <h3>20 Years of Expertise</h3>
+        <p>Founded in 2004, our team has handled over 40,000 coins. We know what makes a coin rare, beautiful, and a sound investment.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🔬</div>
+        <h3>Third-Party Graded Only</h3>
+        <p>Every coin we sell is slabbed by PCGS or NGC. No raw, no self-graded inventory. What you see is exactly what you get.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🛡️</div>
+        <h3>100% Authenticity Guarantee</h3>
+        <p>If any coin we sell is ever deemed not genuine by a major grading service, we offer a full refund — no time limit.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📦</div>
+        <h3>Fully Insured Shipping</h3>
+        <p>All orders ship via USPS Registered Mail or FedEx Overnight with full declared-value insurance and discreet packaging.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💰</div>
+        <h3>Competitive Buy Prices</h3>
+        <p>We pay top dollar. Our appraisals are transparent, and we'll beat any competing dealer's written offer by 3%.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📞</div>
+        <h3>Personal Collector Service</h3>
+        <p>Talk directly with a numismatist — not a call center. We help you build a coherent collection, not just make a sale.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── AUTHENTICATION PROCESS ─────────────────────────── -->
+<section class="section auth-section" id="authentication">
+  <div class="container">
+    <div class="section-header">
+      <span class="tag">Zero Counterfeits</span>
+      <h2>Our Authentication Process</h2>
+      <p>Every coin passes a rigorous multi-stage verification before entering our inventory or being listed for sale.</p>
+    </div>
+    <div class="auth-steps">
+      <div class="auth-step">
+        <div class="step-num">1</div>
+        <h3>Visual Examination</h3>
+        <p>Initial inspection under 10x–40x magnification for die characteristics, surface originality, and signs of alteration.</p>
+      </div>
+      <div class="auth-step">
+        <div class="step-num">2</div>
+        <h3>Specific Gravity Test</h3>
+        <p>Precious metal coins are weighed and measured for diameter/thickness. Density must match period specifications within 0.1%.</p>
+      </div>
+      <div class="auth-step">
+        <div class="step-num">3</div>
+        <h3>XRF Spectroscopy</h3>
+        <p>Non-destructive X-ray fluorescence confirms metal composition. Identifies plating, fills, or non-period alloys immediately.</p>
+      </div>
+      <div class="auth-step">
+        <div class="step-num">4</div>
+        <h3>PCGS / NGC Submission</h3>
+        <p>All significant coins are submitted to a major third-party grading service. We only sell raw coins below $150 face.</p>
+      </div>
+      <div class="auth-step">
+        <div class="step-num">5</div>
+        <h3>Provenance Research</h3>
+        <p>For ancient and high-value coins, we trace collection history, auction records, and legal export compliance documentation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ───────────────────────────────────── -->
+<section class="section testimonials">
+  <div class="container">
+    <div class="section-header">
+      <span class="tag">Collector Reviews</span>
+      <h2>Trusted by Serious Numismatists</h2>
+      <p>Over 1,200 five-star transactions. Here's what our clients say.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>"I've purchased from a dozen dealers over 30 years. Heritage is the only one I recommend without hesitation. The 1901-S Barber quarter I bought was exactly as described — and their buy-back offer was the most generous I'd seen."</blockquote>
+        <div class="testimonial-author">Robert M.</div>
+        <div class="testimonial-role">Long-Beach, CA · ANA Member since 1991</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Sent in my late father's collection for appraisal. They were honest, methodical, and explained every grade. Didn't oversell a single coin. That kind of integrity is rare in this industry."</blockquote>
+        <div class="testimonial-author">Patricia K.</div>
+        <div class="testimonial-role">Austin, TX · Estate Consignment Client</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>"The Roman denarius I bought arrived in a beautifully presented conservation case with full provenance documentation going back to a 1987 German auction. This is how ancient coins should be sold."</blockquote>
+        <div class="testimonial-author">Dr. James L.</div>
+        <div class="testimonial-role">Boston, MA · Ancient Coin Collector</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FREE APPRAISAL CTA ─────────────────────────────── -->
+<section class="appraisal-cta" id="sell">
+  <div class="container">
+    <span class="tag">We Buy Coins</span>
+    <h2>Know What Your Collection Is Worth</h2>
+    <p>Upload photos of your coins for a free, no-obligation evaluation from a certified numismatist. Response within 24 business hours.</p>
+    <a href="appraisal.html" class="btn btn-gold">Start Free Appraisal →</a>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="font-size:1.2rem">⬡ Heritage <span style="color:var(--gold)">Numismatics</span></div>
+        <p>America's trusted source for rare coins, precious metal bullion, and ancient currency since 2004. PCGS &amp; NGC authorized. ANA Life Member #123456.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#">US Rare Coins</a></li>
+          <li><a href="#">Silver Bullion</a></li>
+          <li><a href="#">Gold Bullion</a></li>
+          <li><a href="#">Ancient Currency</a></li>
+          <li><a href="#">2026 Anniversary</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Free Appraisal</a></li>
+          <li><a href="#">Sell Your Coins</a></li>
+          <li><a href="#">Estate Services</a></li>
+          <li><a href="#">Authentication</a></li>
+          <li><a href="#">PCGS Submission</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+18005550100">1-800-555-0100</a></li>
+          <li><a href="mailto:info@heritagenumismatics.com">info@heritagenumismatics.com</a></li>
+          <li><a href="#">123 Collector's Row, Suite 400<br/>Philadelphia, PA 19103</a></li>
+          <li><a href="#">Mon–Fri 9AM–6PM EST</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Heritage Numismatics LLC. All rights reserved.</span>
+      <div class="security-badges">
+        <span class="security-badge">SSL SECURED</span>
+        <span class="security-badge">PCGS DEALER</span>
+        <span class="security-badge">NGC MEMBER</span>
+        <span class="security-badge">ANA LIFE</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav toggle
+  function toggleMenu() {
+    const links = document.querySelector('.nav-links');
+    links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+    links.style.flexDirection = 'column';
+    links.style.position = 'absolute';
+    links.style.top = '72px';
+    links.style.left = '0';
+    links.style.right = '0';
+    links.style.background = 'var(--navy)';
+    links.style.padding = '20px 32px';
+    links.style.gap = '20px';
+    links.style.borderBottom = '1px solid rgba(201,168,76,0.2)';
+  }
+
+  // Spot price live fetch (replace with your API key)
+  // Using metals-api.com, goldapi.io, or similar
+  async function fetchSpotPrices() {
+    try {
+      // Example endpoint — substitute your real API:
+      // const res = await fetch('[metals-api.com](https://metals-api.com/api/latest?access_key=YOUR_KEY&base=USD&symbols=XAU,XAG)');
+      // const data = await res.json();
+      // document.getElementById('gold-price').textContent =
+      //   '$' + (1 / data.rates.XAU).toFixed(2);
+      // document.getElementById('silver-price').textContent =
+      //   '$' + (1 / data.rates.XAG).toFixed(2);
+      console.log('Spot price API: replace placeholder with live endpoint');
+    } catch(e) {
+      console.warn('Spot prices unavailable:', e);
+    }
+  }
+  fetchSpotPrices();
+
+  // Nav active state on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks  = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  });
+</script>
+</body>
+</html>
